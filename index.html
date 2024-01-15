@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
 		<link rel="stylesheet" href="css/leaflet-search.src.css">
+		<link rel="stylesheet" href="css/L.Control.MousePosition.css" />
         <style>
         html, body, #map {
             width: 100%;
@@ -33,6 +34,7 @@
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
         <script src="js/Autolinker.min.js"></script>
+		<script src="js/L.Control.MousePosition.js"></script>
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
@@ -43,8 +45,12 @@
         <script src="data/Instituciones_2.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[13.995102600000001,-88.53083832739726],[15.9780234,-85.65152867260274]]);
+            center: [15, -87],
+			zoom: 9,
+			zoomControl:true,
+			maxZoom:28,
+			minZoom:1
+        });//.fitBounds([[13.995102600000001,-88.53083832739726],[15.9780234,-85.65152867260274]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -409,6 +415,11 @@
 		});
 		
 		map.addControl(searchControl);
+		
+		L.control.mousePosition().addTo(map);
+		
+		L.control.scale({imperial:false}).addTo(map);
+		
         </script>
     </body>
 </html>
